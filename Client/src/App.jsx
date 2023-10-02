@@ -1,9 +1,13 @@
 import "./App.css";
-import Home from "./pages/home";
+import { Router, ReactLocation, Outlet } from "react-location";
+import routes from "./router";
 function App() {
+  const location = new ReactLocation();
   return (
     <>
-      <Home />
+      <Router location={location} routes={routes}>
+        <Outlet />
+      </Router>
     </>
   );
 }
