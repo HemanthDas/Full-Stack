@@ -13,12 +13,20 @@ app.get("/", (req, res) => {
 app.post("/auth/login", (req, res) => {
   const { email, password } = req.body;
   if (!userExists(email)) {
-    return res.status(401).json({ message: "User Not Found" });
+    return res.status(404).json({ message: "User Not Found" });
   }
   if (!userPass({ email, password })) {
-    return res.status(401).json({ message: "Login failed" });
+    return res.status(401).json({ message: "Password Incorrect" });
   }
   res.status(200).json({ message: "Login success" });
+});
+
+app.post("/auth/register", (req, res) => {
+  const { email, username, password } = req.body;
+  if (userExists(email)) {
+    return res.status(409).json({ message: "User Already Exists" });
+  }
+  return res.status(201).json({ message: "User Created" });
 });
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

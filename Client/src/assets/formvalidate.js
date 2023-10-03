@@ -6,4 +6,8 @@ const passwordCheck = (password) => {
   const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
   return passwordRegex.test(password);
 };
-export { emailCheck, passwordCheck };
+const usernameCheck = (username) => {
+  const usernameRegex = /^[a-zA-Z0-9_]+$/;
+  return usernameRegex.test(username);
+};
+export { emailCheck, passwordCheck, usernameCheck };

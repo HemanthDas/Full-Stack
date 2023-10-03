@@ -17,11 +17,14 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.status == 200) {
+        if (data.status === 200) {
           console.log(data);
         } else {
           setError(data.message);
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -29,9 +32,11 @@ const Login = () => {
     if (!emailCheck(details.email)) {
       setError("Please Enter a Valid Email");
     } else if (details.password.length == 0) {
-      setError("Please Fill Password");
+      setError("Please Enter Password");
     } else {
+      setError("");
       checkCred();
+      setDetails({ email: "", password: "" });
     }
   }
   return (
