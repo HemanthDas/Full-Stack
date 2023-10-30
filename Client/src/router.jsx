@@ -1,32 +1,25 @@
-import Home from "./pages/home";
-import Cart from "./pages/cart";
-// import Login from "./pages/login";
-const Router = [
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/cart",
-    element: <Cart />,
-  },
-  {
-    path: "/login",
-    element: async () => {
-      return import("./pages/login").then((module) => {
-        const Login = module.default;
-        return <Login />;
-      });
-    },
-  },
-  {
-    path: "/register",
-    element: async () => {
-      return import("./pages/register").then((module) => {
-        const Register = module.default;
-        return <Register />;
-      });
-    },
-  },
-];
-export default Router;
+import {
+  RootRoute,
+  Route,
+  Router,
+  lazyRouteComponent,
+} from "@tanstack/react-router";
+import App from "./App";
+
+const rootRoute = new RootRoute({
+  component: App,
+});
+const indexRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: "/",
+  component: lazyRouteComponent(() => import("./pages/home")),
+});
+
+const notFoundRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: "*",
+  component: lazyRouteComponent(() => import("./pages/NotFound")),
+});
+
+const routeTree = rootRoute.addChildren([indexRoute, notFoundRoute]);
+export const routes = new Router({ routeTree });

@@ -1,13 +1,11 @@
 import "./App.css";
-import { Router, ReactLocation, Outlet } from "react-location";
-import routes from "./router";
+import { Outlet } from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 function App() {
-  const location = new ReactLocation();
   return (
     <>
-      <Router location={location} routes={routes}>
-        <Outlet />
-      </Router>
+      <Outlet />
+      <TanStackRouterDevtools />
     </>
   );
 }
