@@ -14,8 +14,27 @@ a {
 .navbar {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-evenly;
   background-color: white;
+  max-height: 8vh;
+  .title {
+    flex: 1;
+    font-size: 6vmin;
+    min-width: fit-content;
+  }
+  .search-box {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > input {
+      width: 50%;
+      height: 60%;
+    }
+  }
+  .profile {
+    flex: 2;
+  }
 }
 .not-found {
   overflow: hidden;
@@ -58,4 +77,8 @@ a {
       background-color: black;
     }
   }
+}
+.actvive {
+  background-color: rgb(0, 0, 0);
+  color: white;
 }

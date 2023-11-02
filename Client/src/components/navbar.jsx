@@ -1,30 +1,34 @@
 import { Link, useRouter } from "@tanstack/react-router";
-
+import { useContext } from "react";
+import { AuthContext } from "../context/authcontext";
 const Navbar = () => {
-  const isLoggedIn = false;
+  const isLoggedIn = useContext(AuthContext);
   const route = useRouter();
   return (
     <div>
-      {route.state.location.pathname !== "/login" &&
-        route.state.location.pathname !== "/register" && (
-          <nav className="navbar">
-            <Link to="/">E-Commerce</Link>
-            <div className="profile">
-              {isLoggedIn ? (
-                <Link to={"account"}>Profile</Link>
-              ) : (
-                <Link
-                  to={"account/login"}
-                  search={{
-                    redirect:route.state.location.pathname,
-                  }}
-                >
-                  login
-                </Link>
-              )}
-            </div>
-          </nav>
-        )}
+      <nav className="navbar">
+        <Link to="/" className="title">
+          E-Commerce
+        </Link>
+        <div className="search-box">
+          <input type="text" />
+        </div>
+        <div className="profile">
+          {isLoggedIn ? (
+            <Link to={"/account"}>Profile</Link>
+          ) : (
+            <Link
+              to={"/auth/login"}
+              search={{
+                redirect: route.state.location.pathname,
+              }}
+              activeOptions={{ exact: true }}
+            >
+              login
+            </Link>
+          )}
+        </div>
+      </nav>
     </div>
   );
 };
