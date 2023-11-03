@@ -2,7 +2,7 @@ import { Link, useRouter } from "@tanstack/react-router";
 import { useContext } from "react";
 import { AuthContext } from "../context/authcontext";
 const Navbar = () => {
-  const isLoggedIn = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const route = useRouter();
   return (
     <div>
@@ -13,8 +13,11 @@ const Navbar = () => {
         <div className="search-box">
           <input type="text" />
         </div>
+        <div className="cart">
+          <Link to={"/cart"}>Cart</Link>
+        </div>
         <div className="profile">
-          {isLoggedIn ? (
+          {user ? (
             <Link to={"/account"}>Profile</Link>
           ) : (
             <Link

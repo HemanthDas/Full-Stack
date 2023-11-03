@@ -3,9 +3,11 @@ import {
   Route,
   Router,
   lazyRouteComponent,
+  useNavigate,
 } from "@tanstack/react-router";
 import App from "./App";
-
+import { AuthContext } from "./context/authcontext";
+import { useContext } from "react";
 const rootRoute = new RootRoute({
   component: App,
 });
@@ -16,6 +18,7 @@ const indexRoute = new Route({
   loader: async () => {
     const resOK = await fetch(`https://fakestoreapi.com/products`);
     if (!resOK.ok) {
+      console.log("error");
       throw new Error("Error");
     }
     return resOK.json();
@@ -26,7 +29,7 @@ const prodcutRoute = new Route({
   getParentRoute: () => rootRoute,
   path: "product",
   component: lazyRouteComponent(() => import("./pages/product")),
-  
+
   loaderContext: ({ search }) => ({ limit: search.limit || 5 }),
   loader: ({ context }) => {
     console.log(context.limit);
@@ -45,6 +48,10 @@ const authRoute = new Route({
   getParentRoute: () => rootRoute,
   id: "auth",
   path: "auth",
+  beforeLoad: () => {
+    const navigate = useNavigate();
+    navigate({ to: "/auth/login" });
+  },
 });
 const loginRoute = new Route({
   getParentRoute: () => authRoute,

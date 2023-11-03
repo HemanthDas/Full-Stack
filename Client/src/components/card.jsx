@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 
 const Card = (props) => {
-  console.log(props);
   return (
     <>
       <div className="card">

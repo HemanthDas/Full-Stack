@@ -3,10 +3,9 @@ import { useLoader, useMatch } from "@tanstack/react-router";
 const Home = () => {
   const data = useLoader();
   const { isFetching } = useMatch();
-
+  console.log("first");
   return (
     <div>
-      Home
       {isFetching ? (
         <div>Loading...</div>
       ) : (
