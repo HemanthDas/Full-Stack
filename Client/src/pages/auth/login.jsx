@@ -1,18 +1,25 @@
 import { Link, useNavigate, useRouter } from "@tanstack/react-router";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/authcontext";
 const Login = () => {
   const route = useRouter();
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login, user } = useContext(AuthContext);
+  useEffect(() => {
+    if (user) {
+      navigate({
+        to: route.state.location.search.redirect || "/",
+        replace: true,
+      });
+    }
+  });
   const [data, setData] = useState({
     name: "",
     password: "",
   });
   function handleClick() {
-    alert("Loggin Success");
-    console.log(data);
     login(data);
+    alert("Loggin Success");
     navigate({ to: route.state.location.search.redirect, replace: true });
   }
   return (
