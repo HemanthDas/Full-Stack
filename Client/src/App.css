@@ -3,12 +3,38 @@ body {
   min-height: 100vh;
   padding: 0px;
   margin: 0px;
+  background-color: rgb(234, 234, 234);
 }
 #root {
   font-size: 20px;
 }
-.links {
+a {
   text-decoration: none;
+}
+.navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  background-color: white;
+  max-height: 8vh;
+  .title {
+    flex: 1;
+    font-size: 6vmin;
+    min-width: fit-content;
+  }
+  .search-box {
+    flex: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > input {
+      width: 50%;
+      height: 60%;
+    }
+  }
+  .profile {
+    flex: 2;
+  }
 }
 .not-found {
   overflow: hidden;
@@ -16,7 +42,7 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  height: 100vh;
+  background-color: white;
   > h1 {
     font-size: 15vmax;
     margin: 0px;
@@ -51,4 +77,8 @@ body {
       background-color: black;
     }
   }
+}
+.actvive {
+  background-color: rgb(0, 0, 0);
+  color: white;
 }
