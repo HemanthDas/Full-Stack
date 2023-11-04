@@ -1,13 +1,18 @@
 import PropTypes from "prop-types";
-import {Link} from "@tanstack/react-router"
+import { Link } from "@tanstack/react-router";
+import { useContext } from "react";
+import { CartContext } from "../context/cartcontext";
 const Card = (props) => {
-  let {description} = props;
-  if(description.length >= 200){
-    description = `${description.substring(0,197)}...`;
+  let { description } = props;
+  const { addCart } = useContext(CartContext);
+  function handleAdd() {
+    addCart(props.id);
+  }
+  if (description.length >= 200) {
+    description = `${description.substring(0, 197)}...`;
   }
   return (
     <div className="card-grid">
-      
       <div className="card">
         <div className="card-image">
           <img src={props.image} alt={props.title} />
@@ -15,13 +20,13 @@ const Card = (props) => {
 
         <div className="card-body">
           <h2>{props.title}</h2>
-          <p>{description}...<Link >more</Link></p>
+          <p>
+            {description}...<Link>more</Link>
+          </p>
           <p>{props.price}</p>
+          <button onClick={handleAdd}>+</button>
         </div>
       </div>
-
-      
-
     </div>
   );
 };

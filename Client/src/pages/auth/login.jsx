@@ -20,7 +20,7 @@ const Login = () => {
   function handleClick() {
     login(data);
     alert("Loggin Success");
-    navigate({ to: route.state.location.search.redirect, replace: true });
+    navigate({ to: "/", replace: true });
   }
   return (
     <div className="auth-grid">

@@ -4,7 +4,7 @@ import { RouterProvider } from "@tanstack/react-router";
 import { routes } from "./router";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <React.Fragment>
     <RouterProvider router={routes} />
-  </React.StrictMode>
+  </React.Fragment>
 );

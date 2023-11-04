@@ -14,15 +14,6 @@ function createRoutes() {
     getParentRoute: () => rootRoute,
     path: "/",
     component: lazyRouteComponent(() => import("./pages/home")),
-    loader: async () => {
-      const resOK = await fetch(`https://fakestoreapi.com/products`);
-      if (!resOK.ok) {
-        console.log("error");
-        throw new Error("Error");
-      }
-      return resOK.json();
-    },
-    maxAge: 10_000,
   });
 
   const prodcutRoute = new Route({
@@ -37,7 +28,7 @@ function createRoutes() {
         .then((res) => res.json())
         .then((data) => data);
     },
-    maxAge: 10_000,
+    maxAge: 100_000,
   });
 
   const accountRoute = new Route({
@@ -62,7 +53,12 @@ function createRoutes() {
     path: "auth/register",
     component: lazyRouteComponent(() => import("./pages/auth/register")),
   });
+  const cartRoute = new Route({
+    getParentRoute: () => rootRoute,
+    path: "/cart",
 
+    component: lazyRouteComponent(() => import("./pages/cartpage")),
+  });
   const notFoundRoute = new Route({
     getParentRoute: () => rootRoute,
     path: "*",
@@ -74,6 +70,7 @@ function createRoutes() {
     prodcutRoute,
     accountRoute,
     authRoute.addChildren([loginRoute, regitsterRoute]),
+    cartRoute,
     notFoundRoute,
   ]);
 
