@@ -1,6 +1,10 @@
 import PropTypes from "prop-types";
-
+import {Link} from "@tanstack/react-router"
 const Card = (props) => {
+  let {description} = props;
+  if(description.length >= 200){
+    description = `${description.substring(0,197)}...`;
+  }
   return (
     <div className="card-grid">
       
@@ -11,7 +15,7 @@ const Card = (props) => {
 
         <div className="card-body">
           <h2>{props.title}</h2>
-          <p>{props.description}</p>
+          <p>{description}...<Link >more</Link></p>
           <p>{props.price}</p>
         </div>
       </div>
