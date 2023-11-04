@@ -6,12 +6,13 @@ const Navbar = () => {
   const route = useRouter();
   return (
     <div>
+      
       <nav className="navbar">
         <Link to="/" className="title">
-          E-Commerce
+          Shop <span>It</span>
         </Link>
         <div className="search-box">
-          <input type="text" />
+          <input type="text" placeholder="enter to search"/>
         </div>
         <div className="cart">
           <Link to={"/cart"}>Cart</Link>
@@ -32,6 +33,7 @@ const Navbar = () => {
           )}
         </div>
       </nav>
+
     </div>
   );
 };

@@ -1,3 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500;600;700;900&display=swap");
+* {
+  font-family: "Inter";
+  text-decoration: none;
+}
+:root{
+  --main-bg: rgb(30, 30, 69);
+  --secondary-bg: rgb(71, 71, 140);
+  --third-bg: #;
+  --fourth-bg: #;
+}
 body {
   width: 100%;
   min-height: 100vh;
@@ -13,28 +24,29 @@ a {
 }
 .navbar {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 18% 30px;
+}
+
+.nav-icons {
   width: 100%;
-  justify-content: space-evenly;
-  background-color: white;
-  max-height: 8vh;
-  .title {
-    flex: 1;
-    font-size: 6vmin;
-    min-width: fit-content;
-  }
-  .search-box {
-    flex: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    > input {
-      width: 50%;
-      height: 60%;
-    }
-  }
-  .profile {
-    flex: 2;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+.search-box input {
+  padding: 1rem 1.2rem;
+  width: 600px;
+  border-radius: 30px;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+}
+.navbar .title{
+  font-size: 2rem;
+  font-weight: 800;
 }
 .not-found {
   overflow: hidden;
@@ -78,7 +90,32 @@ a {
     }
   }
 }
+
 .actvive {
   background-color: rgb(0, 0, 0);
   color: white;
+}
+.card-grid {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 2rem;
+}
+.card {
+  width: 300px;
+  background-color: rgb(209, 205, 205);
+  padding: 20px;
+  height: max-content;
+  border-radius: 20px;
+}
+.card h2 {
+  font-size: 1.2rem;
+}
+.card p {
+  font-size: 0.9rem;
+}
+.card-image img {
+  width: 100%;
+  border-radius: 20px;
+  height: 400px;
 }

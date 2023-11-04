@@ -5,7 +5,7 @@ const Home = () => {
   const { isFetching } = useMatch();
   console.log("first");
   return (
-    <div>
+    <div className="card-grid">
       {isFetching ? (
         <div>Loading...</div>
       ) : (
