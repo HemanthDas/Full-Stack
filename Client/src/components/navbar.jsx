@@ -14,10 +14,10 @@ const Navbar = () => {
         <div className="search-box">
           <input type="text" placeholder="enter to search"/>
         </div>
-        <div className="cart">
-          <Link to={"/cart"}>Cart</Link>
+        <div>
+          <Link to={"/cart"} className="cart">Cart</Link>
         </div>
-        <div className="profile">
+        <div  className="profile">
           {user ? (
             <Link to={"/account"}>Profile</Link>
           ) : (
