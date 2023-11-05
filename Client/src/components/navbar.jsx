@@ -20,8 +20,8 @@ const Navbar = () => {
         </div>
         <div className="profile">
           {user ? (
-            <Link to={"/account"}>
-              Profile
+            <>
+              <Link to={"/account"}>Profile</Link>
               <button
                 onClick={() => {
                   logout();
@@ -29,7 +29,7 @@ const Navbar = () => {
               >
                 Logout
               </button>
-            </Link>
+            </>
           ) : (
             <Link
               to={"/auth/login"}

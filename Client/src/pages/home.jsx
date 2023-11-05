@@ -31,9 +31,6 @@ const Home = () => {
           return <Card key={item.id} {...item} />;
         })
       )}
-      <select>
-        <option value="1">1</option>
-      </select>
     </div>
   );
 };

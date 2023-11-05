@@ -5,33 +5,45 @@ const Login = () => {
   const route = useRouter();
   const navigate = useNavigate();
   const { login, user } = useContext(AuthContext);
-  useEffect(() => {
-    if (user) {
-      navigate({
-        to: route.state.location.search.redirect || "/",
-        replace: true,
-      });
-    }
-  });
   const [data, setData] = useState({
-    name: "",
+    email: "",
     password: "",
   });
-  function handleClick() {
-    login(data);
-    alert("Loggin Success");
-    navigate({ to: "/", replace: true });
+  useEffect(() => {
+    if (user) {
+      navigate({ to: "/", replace: true });
+    }
+  }, [user]);
+  async function handleClick() {
+    const resOk = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    if (resOk.ok) {
+      login(data);
+      navigate({ to: "/", replace: true });
+      alert("Logged in");
+    } else {
+      alert("Invalid credentials");
+    }
+    setData({ email: "", password: "" });
   }
   return (
     <div className="auth-grid">
       <input
-        type="text"
+        type="email"
+        value={data.email}
         onChange={(e) => {
-          setData({ ...data, name: e.target.value });
+          console.log("changing");
+          setData({ ...data, email: e.target.value });
         }}
       />
       <input
-        type="text"
+        type="password"
+        value={data.password}
         onChange={(e) => {
           setData({ ...data, password: e.target.value });
         }}
