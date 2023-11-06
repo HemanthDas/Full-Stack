@@ -23,15 +23,26 @@ const Home = () => {
     fetchData();
   }, []);
   return (
-    <div className="card-grid">
-      {isFetching ? (
-        <div>Loading...</div>
-      ) : (
-        data.map((item) => {
-          return <Card key={item.id} {...item} />;
-        })
-      )}
-    </div>
+    <>
+      <div className="card-grid">
+        {isFetching ? (
+          <div>Loading...</div>
+        ) : (
+          data.map((item) => {
+            return <Card key={item.id} {...item} />;
+          })
+        )}
+      </div>
+      <div className="card-grid">
+        {isFetching ? (
+          <div>Loading...</div>
+        ) : (
+          data.map((item) => {
+            return <Card key={item.id} {...item} />;
+          })
+        )}
+      </div>
+    </>
   );
 };
 

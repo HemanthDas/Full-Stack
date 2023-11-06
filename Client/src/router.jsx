@@ -20,14 +20,6 @@ function createRoutes() {
     getParentRoute: () => rootRoute,
     path: "product",
     component: lazyRouteComponent(() => import("./pages/product")),
-
-    loaderContext: ({ search }) => ({ limit: search.limit || 5 }),
-    loader: ({ context }) => {
-      console.log(context.limit);
-      return fetch(`https://fakestoreapi.com/products?limit=${context.limit}`)
-        .then((res) => res.json())
-        .then((data) => data);
-    },
     maxAge: 100_000,
   });
 

@@ -9,19 +9,23 @@ const Cart = () => {
   const [error, setError] = useState(null);
   const [isFetching, setisFetching] = useState(true);
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products `)
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Network response was not ok");
-        }
+    if (user) {
+      fetch(`https://fakestoreapi.com/products `)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error("Network response was not ok");
+          }
 
-        return res.json();
-      })
-      .then((data) => {
-        setItems(data);
-        setisFetching(false);
-      })
-      .catch((error) => setError(error.message));
+          return res.json();
+        })
+        .then((data) => {
+          setItems(data);
+          setisFetching(false);
+        })
+        .catch((error) => setError(error.message));
+    } else {
+      setError("Please Login");
+    }
   }, []);
 
   if (error) {

@@ -15,19 +15,23 @@ const Login = () => {
     }
   }, [user]);
   async function handleClick() {
-    const resOk = await fetch("http://localhost:3000/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    if (resOk.ok) {
-      login(data);
-      navigate({ to: "/", replace: true });
-      alert("Logged in");
-    } else {
-      alert("Invalid credentials");
+    try {
+      const resOk = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (resOk.ok) {
+        login(data);
+        navigate({ to: "/", replace: true });
+        alert("Logged in");
+      } else {
+        alert("Invalid credentials");
+      }
+    } catch (err) {
+      alert(err);
     }
     setData({ email: "", password: "" });
   }
@@ -37,7 +41,6 @@ const Login = () => {
         type="email"
         value={data.email}
         onChange={(e) => {
-          console.log("changing");
           setData({ ...data, email: e.target.value });
         }}
       />
