@@ -5,6 +5,7 @@ const Register = () => {
   const navigate = useNavigate();
   const route = useRouter();
   const { login } = useContext(AuthContext);
+  const [error, setError] = useState(null);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -22,14 +23,18 @@ const Register = () => {
       },
       body: JSON.stringify({ email: data.email, password: data.password }),
     });
-    login({ email: data.email, password: data.password });
+
     if (resOk.ok) {
       alert("Registered");
-
+      login({ email: data.email, password: data.password });
       navigate({
         to: route.state.location.search.redirect || "/",
         replace: true,
       });
+    } else {
+      const res = await resOk.json();
+      setError(res.message);
+      alert(error);
     }
   }
   return (

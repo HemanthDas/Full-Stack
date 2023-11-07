@@ -36,20 +36,16 @@ const Cart = () => {
 
   return (
     <div>
-      {user ? (
-        cart.length === 0 ? (
-          <div>Data Not Found</div>
-        ) : isFetching ? (
-          <div>loading...</div>
-        ) : (
-          <div className="card-grid">
-            {cartItems.map((cartItem) => (
-              <Card key={cartItem.id} {...cartItem} />
-            ))}
-          </div>
-        )
+      {cart.length === 0 ? (
+        <div>Data Not Found</div>
+      ) : isFetching ? (
+        <div>loading...</div>
       ) : (
-        <div>Please Login</div>
+        <div className="card-grid">
+          {cartItems.map((cartItem) => (
+            <Card key={cartItem.id} {...cartItem} />
+          ))}
+        </div>
       )}
     </div>
   );
